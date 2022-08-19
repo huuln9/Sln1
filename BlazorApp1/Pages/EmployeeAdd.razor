@@ -1,0 +1,21 @@
+﻿@page "/employee/add"
+@using BlazorApp1.Models;
+
+<h3>EmployeeAdd</h3>
+<EditForm Model="employee">
+  <div class="form-group">
+    <label for="Name">Name</label>
+    <InputText class="form-control" @bind-Value="employee.Name"></InputText>
+    <small id="nameHelp" class="form-text text-muted">Enter the name</small>
+  </div>
+  <div class="form-group">
+    <label for="Image">Image</label>
+    <InputText class="form-control" @bind-Value="employee.Avatar"></InputText>
+    <small id="imgHelp" class="form-text text-muted">Enter the image link</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    private EmployeeAddDto employee = new EmployeeAddDto();
+}

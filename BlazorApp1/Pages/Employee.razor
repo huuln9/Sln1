@@ -1,0 +1,40 @@
+﻿@page "/employee"
+@using BlazorApp1.Components;
+
+<h3>Employee Management</h3>
+
+@if (Employees == null)
+{
+    <LoadingIndicator></LoadingIndicator>
+}
+else
+{
+    <a class="button" href="/employee/add"><span class="oi oi-plus" aria-hidden="true"></span> Add new</a>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Avatar</td>
+                <td>Create at</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in Employees)
+            {
+                <tr>
+                    <td><a href="/employee/@e.Id">@e.Name</a></td>
+                    <td><img src="@e.Avatar"></td>
+                    <td>@e.CreatedAt</td>
+                    <td>
+                        <a class="button" href="/employee/@e.Id/update"> <span class="oi oi-pencil" aria-hidden="true"></span> Update</a>
+                        <br>
+                        <a class="button" href="/employee/delete"><span class="oi oi-delete" aria-hidden="true"></span> Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>    
+}
+

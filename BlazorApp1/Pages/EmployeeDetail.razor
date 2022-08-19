@@ -1,0 +1,31 @@
+﻿@page "/employee/{id}"
+@using BlazorApp1.Services;
+@using BlazorApp1.Models;
+@using BlazorApp1.Components;
+
+@if (employee == null)
+{
+    <LoadingIndicator></LoadingIndicator>
+}
+else
+{
+    <h3>EmployeeDetail @id</h3>
+    <b>@employee.Name</b> <br/>
+    <img src="@employee.Avatar"> <br/>
+    <b>@employee.CreatedAt</b>    
+}
+
+@code {
+    [Parameter]
+    public string id { set; get; }
+
+    [Inject]
+    private IEmployeeService EmployeeService { get; set; }
+
+    private EmployeeModel employee { set; get; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        employee = await EmployeeService.GetEmployee(id);
+    }
+}
